@@ -1362,7 +1362,7 @@ void defaultConfig()
 
     config.wifi_mode = WIFI_AP_STA_FIX;
     config.wifi_power = 44; // WIFI_POWER_11dBm
-    config.wifi_ap_ch = 6;
+    config.wifi_ap_ch = 3;
     config.wifi_sta[0].enable = true;
     sprintf(config.wifi_sta[0].wifi_ssid, "APRSTH");
     sprintf(config.wifi_sta[0].wifi_pass, "aprsthnetwork");
@@ -1390,8 +1390,8 @@ void defaultConfig()
 #endif
 
     //--RF Module
-    config.rf_en = false;
-    config.rf_type = RF_SA868_VHF;
+    config.rf_en = true;
+    config.rf_type = RF_SR_1WV;
     config.freq_rx = 144.6400;
     config.freq_tx = 144.6400;
     config.offset_rx = 0;
@@ -1481,7 +1481,7 @@ void defaultConfig()
     config.igate_sts_interval = 1800;
 
     // DIGI REPEATER
-    config.digi_en = false;
+    config.digi_en = true;
     config.digi_loc2rf = true;
     config.digi_loc2inet = false;
     config.digi_ssid = 3;
@@ -1505,7 +1505,7 @@ void defaultConfig()
     config.digi_sts_interval = 1800;
 
     // Tracker
-    config.trk_en = false;
+    config.trk_en = true;
     config.trk_loc2rf = true;
     config.trk_loc2inet = false;
     config.trk_rssi = false;
@@ -1966,7 +1966,7 @@ void defaultConfig()
     config.wx_tlm_interval = 0;
     sprintf(config.host_name, "ESP32APRS_Audio");
 
-    config.fx25_mode = 0; //Used modem mode FX.25 RX+TX
+    config.fx25_mode = 1; //RX  ---Used modem mode FX.25 RX+TX
 }
 
 unsigned long NTP_Timeout;
@@ -2952,7 +2952,7 @@ void RF_MODULE(bool boot)
         if (SA868_waitResponse(data, rsp, 1500))
             log_d("%s", data.c_str());
     }
-    else if ((config.rf_type == RF_SA868_VHF) || (config.rf_type == RF_SA868_UHF) || (config.rf_type == RF_SA868_350))
+    else if ((config.rf_type == ) || (config.rf_type == RF_SA868_UHF) || (config.rf_type == RF_SA868_350))
     {
         SerialRF.printf("AT+DMOCONNECT\r\n");
         if (SA868_waitResponse(data, rsp, 1000))

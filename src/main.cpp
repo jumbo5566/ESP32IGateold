@@ -1830,11 +1830,11 @@ void defaultConfig()
     config.uart1_rts_gpio = -1;
 #endif
 
-    // config.uart2_enable = false;
-    // config.uart2_baudrate = 9600;
-    // config.uart2_rx_gpio = 16;
-    // config.uart2_tx_gpio = 17;
-    // config.uart2_rts_gpio = -1;
+     config.uart2_enable = false;
+     config.uart2_baudrate = 9600;
+     config.uart2_rx_gpio = 16;
+     config.uart2_tx_gpio = 17;
+     config.uart2_rts_gpio = -1;
 
     config.modbus_enable = false;
     config.modbus_de_gpio = -1;

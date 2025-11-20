@@ -1392,8 +1392,8 @@ void defaultConfig()
     //--RF Module
     config.rf_en = false;
     config.rf_type = RF_SA868_VHF;
-    config.freq_rx = 144.3900;
-    config.freq_tx = 144.3900;
+    config.freq_rx = 144.6400;
+    config.freq_tx = 144.6400;
     config.offset_rx = 0;
     config.offset_tx = 0;
     config.tone_rx = 0;
@@ -1429,11 +1429,11 @@ void defaultConfig()
     config.rf_pwr_active = 1;
     config.rf_ptt_active = 1;    
 #else
-    config.rf_tx_gpio = 13;
-    config.rf_rx_gpio = 14;
-    config.rf_sql_gpio = -1;
-    config.rf_pd_gpio = 27;
-    config.rf_pwr_gpio = -1;
+    config.rf_tx_gpio = 16;
+    config.rf_rx_gpio = 17;
+    config.rf_sql_gpio = 33;
+    config.rf_pd_gpio = 12;
+    config.rf_pwr_gpio = 27;
     config.rf_ptt_gpio = 32;
     config.rf_sql_active = 0;
     config.rf_pd_active = 1;
@@ -1830,11 +1830,11 @@ void defaultConfig()
     config.uart1_rts_gpio = -1;
 #endif
 
-     config.uart2_enable = false;
-     config.uart2_baudrate = 9600;
-     config.uart2_rx_gpio = 16;
-     config.uart2_tx_gpio = 17;
-     config.uart2_rts_gpio = -1;
+     //config.uart2_enable = false;
+     //config.uart2_baudrate = 9600;
+    // config.uart2_rx_gpio = 16;
+     //config.uart2_tx_gpio = 17;
+    // config.uart2_rts_gpio = -1;
 
     config.modbus_enable = false;
     config.modbus_de_gpio = -1;

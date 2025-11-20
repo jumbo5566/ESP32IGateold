@@ -14,22 +14,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Set up Python
+    - name: Set up Python (兼容版本 3.13)
       uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: '3.13'  # 匹配 esp32 平台要求的 3.10-3.13 范围
+        cache: 'pip'  # 缓存 pip 依赖，加速构建
 
-    - name: Install PlatformIO
+    - name: Install PlatformIO Core
       run: |
         python -m pip install --upgrade pip
-        pip install platformio
+        pip install platformio==6.1.18  # 指定稳定版本，避免版本兼容问题
 
-    - name: Build all environments
-      run: pio run
+    - name: 编译 ESP32 项目
+      run: pio run -e esp32-sh1106  # 明确指定项目环境，匹配报错中的目标环境
 
-    - name: Build specific environments (optional)
-      if: success()
-      run: |
-        # 如需只编译特定环境，取消注释并修改环境名称
-        # pio run -e esp32-sh1106
-        # pio run -e esp32c3-sh1106
+    - name: 保存编译产物（可选）
+      uses: actions/upload-artifact@v4
+      with:
+        name: firmware
+        path: .pio/build/esp32-sh1106/firmware.bin  # 保存固件文件，方便下载使用

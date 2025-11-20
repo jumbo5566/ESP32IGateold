@@ -1357,7 +1357,7 @@ void defaultConfig()
 {
     log_d("Default configure mode!");
     config.synctime = true;
-    config.timeZone = 7;
+    config.timeZone = 8;
     config.tx_timeslot = 2000; // ms
 
     config.wifi_mode = WIFI_AP_STA_FIX;

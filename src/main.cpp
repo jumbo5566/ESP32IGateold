@@ -1429,8 +1429,8 @@ void defaultConfig()
     config.rf_pwr_active = 1;
     config.rf_ptt_active = 1;    
 #else
-    config.rf_tx_gpio = 16;
-    config.rf_rx_gpio = 17;
+    config.rf_tx_gpio = 17;
+    config.rf_rx_gpio = 16;
     config.rf_sql_gpio = 33;
     config.rf_pd_gpio = 12;
     config.rf_pwr_gpio = 27;

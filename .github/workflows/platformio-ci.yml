@@ -1,0 +1,35 @@
+name: PlatformIO CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install PlatformIO
+      run: |
+        python -m pip install --upgrade pip
+        pip install platformio
+
+    - name: Build all environments
+      run: pio run
+
+    - name: Build specific environments (optional)
+      if: success()
+      run: |
+        # 如需只编译特定环境，取消注释并修改环境名称
+        # pio run -e esp32-sh1106
+        # pio run -e esp32c3-sh1106

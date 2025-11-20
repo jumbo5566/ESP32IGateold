@@ -2952,7 +2952,7 @@ void RF_MODULE(bool boot)
         if (SA868_waitResponse(data, rsp, 1500))
             log_d("%s", data.c_str());
     }
-    else if ((config.rf_type == ) || (config.rf_type == RF_SA868_UHF) || (config.rf_type == RF_SA868_350))
+    else if ((config.rf_type == RF_SR_1WV) || (config.rf_type == RF_SA868_UHF) || (config.rf_type == RF_SA868_350))
     {
         SerialRF.printf("AT+DMOCONNECT\r\n");
         if (SA868_waitResponse(data, rsp, 1000))

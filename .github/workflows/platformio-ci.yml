@@ -19,17 +19,22 @@ jobs:
     - name: Set up Python (兼容版本 3.13)
       uses: actions/setup-python@v5
       with:
-        python-version: '3.13'  # 严格匹配 esp32 平台要求的 3.10-3.13 范围
+        python-version: '3.13'  # 匹配 esp32 平台要求
 
     - name: Install PlatformIO Core
       run: |
         python -m pip install --upgrade pip
-        pip install platformio==6.1.18  # 指定稳定版本，避免兼容问题
+        pip install platformio==6.1.18  # 稳定版本，避免兼容问题
+
+    - name: 安装缺失的 AX25 库（解决 ax25.h 找不到问题）
+      run: |
+        # 安装 PlatformIO 注册表中的 AX25 协议库（适配 ESP32）
+        pio lib install "AX25"@1.1.0  # 指定稳定版本，确保兼容性
 
     - name: 编译 ESP32 项目（esp32-sh1106 环境）
-      run: pio run -e esp32-sh1106  # 匹配项目 platformio.ini 中的环境配置
+      run: pio run -e esp32-sh1106
 
-    # 可选：如果需要编译多个环境（如 esp32c3-sh1106），取消下面注释
+    # 可选：编译其他环境（如 esp32c3-sh1106）
     # - name: 编译 ESP32C3 项目（esp32c3-sh1106 环境）
     #   run: pio run -e esp32c3-sh1106
 
@@ -37,6 +42,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: firmware-esp32-sh1106
-        path: .pio/build/esp32-sh1106/firmware.bin  # 固件输出路径（根据环境名自动生成）
-        retention-days: 7  # 产物保留 7 天，可按需调整
-        if-no-files-found: error  # 若未找到固件，标记构建失败
+        path: .pio/build/esp32-sh1106/firmware.bin
+        retention-days: 7
+        if-no-files-found: error  # 未找到固件则标记失败
